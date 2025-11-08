@@ -29,13 +29,13 @@ if (!$post) {
 // Increment view count
 $pdo->prepare("UPDATE posts SET views = views + 1 WHERE id = ?")->execute([$id]);
 
-// Determine image (all images are inside 'images/' folder)
+// Determine image path
 $img = '';
 if (!empty($post['image']) && file_exists(__DIR__ . '/images/' . $post['image'])) {
     $img = 'images/' . $post['image'];
 }
 
-// Determine if current user is the author
+// Check if current user is the author
 $showButtons = isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['user_id'];
 
 // Check if current user liked the post
@@ -83,13 +83,19 @@ $totalLikes = $stmt->fetchColumn();
             <a href="delete_post.php?id=<?php echo $post['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
         </div>
     <?php endif; ?>
-
 </div>
+
 <?php
-// Fetch comments for this post
-$stmt = $pdo->prepare("SELECT c.*, u.email FROM comments c JOIN users u ON c.user_id = u.id WHERE c.post_id = ? ORDER BY c.created_at ASC");
+// Fetch comments for this post (now showing username instead of email)
+$stmt = $pdo->prepare("
+    SELECT c.*, u.username 
+    FROM comments c 
+    JOIN users u ON c.user_id = u.id 
+    WHERE c.post_id = ? 
+    ORDER BY c.created_at ASC
+");
 $stmt->execute([$post['id']]);
-$comments = $stmt->fetchAll();
+$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="comments-section">
@@ -99,7 +105,7 @@ $comments = $stmt->fetchAll();
         <ul class="comments-list">
             <?php foreach ($comments as $c): ?>
                 <li>
-                    <strong><?php echo htmlspecialchars($c['email']); ?></strong> 
+                    <strong><?php echo htmlspecialchars($c['username'] ?? 'Anonymous'); ?></strong>
                     <span class="comment-date"><?php echo date("F j, Y H:i", strtotime($c['created_at'])); ?></span>
                     <p><?php echo nl2br(htmlspecialchars($c['comment'])); ?></p>
                 </li>
@@ -119,6 +125,5 @@ $comments = $stmt->fetchAll();
         <p><a href="login.php">Log in</a> to add a comment.</p>
     <?php endif; ?>
 </div>
-
 
 <?php include 'footer.php'; ?>

@@ -342,3 +342,36 @@ footer p { margin:5px 0 0; font-size:0.95rem; color:#d1d5db }
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(239,68,68,0.4);
 }
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-list li {
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+}
+
+.comment-date {
+  color: #888;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
