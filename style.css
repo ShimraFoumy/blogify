@@ -1,0 +1,344 @@
+/* ------------------- Fonts & Variables ------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg:#f6f7fb; 
+  --card:#fff; 
+  --muted:#6b7280; 
+  --accent:#2563eb; 
+  --dark:#0f172a;
+  --radius:12px; 
+  --container:1200px;
+}
+
+/* ------------------- Reset & Base ------------------- */
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:Poppins,system-ui,Arial; background:var(--bg); color:var(--dark);}
+.container{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+/* ------------------- Header ------------------- */
+header {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 4px 18px rgba(15,23,42,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+.header-container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--dark);
+    text-decoration: none;
+}
+.main-nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+.main-nav a:hover { color: var(--accent); }
+.nav-user{margin-left:10px; color:var(--muted); font-size:0.95rem;}
+
+/* ------------------- Hero Section ------------------- */
+.hero-section-full {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background: url('images/background.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.hero-section-full::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    max-width: 900px;
+    padding: 0 20px;
+}
+.hero-overlay h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.hero-overlay p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+/* ------------------- Hero Buttons (Primary & White Outline) ------------------- */
+.hero-overlay .btn-primary, 
+.hero-overlay .btn-blogs {
+    display: inline-block;
+    padding: 14px 36px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px; /* pill-shaped */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+/* Primary Gradient Button */
+.hero-overlay .btn-primary {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #fff;
+    border: none;
+}
+.hero-overlay .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(37,99,235,0.4);
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+/* Secondary White Outline Button */
+.hero-overlay .btn-blogs {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+.hero-overlay .btn-blogs:hover {
+    background: #fff;
+    color: #2563eb;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(255,255,255,0.4);
+}
+
+/* ------------------- Section Titles ------------------- */
+.section-title{font-size:1.6rem; text-align:center; margin:28px 0; color:var(--dark)}
+
+/* ------------------- Blog Grid ------------------- */
+.blog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+@media (max-width:980px){ .blog-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){ .blog-grid{grid-template-columns:1fr} }
+
+/* ------------------- Blog Card ------------------- */
+.blog-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 6px 22px rgba(2,6,23,0.06);
+    display:flex;
+    flex-direction:column;
+    transition:transform .22s, box-shadow .22s;
+}
+.blog-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 36px rgba(2,6,23,0.12);
+}
+.blog-image{width:100%; height:180px; overflow:hidden}
+.blog-image img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s}
+.blog-card:hover .blog-image img{transform:scale(1.04)}
+.blog-content{padding:16px; display:flex; flex-direction:column; flex:1}
+.blog-title{font-size:1.1rem; margin:0 0 8px; color:var(--dark)}
+.blog-excerpt{color:var(--muted); flex:1; margin-bottom:12px}
+.card-actions{display:flex; justify-content:space-between; align-items:center}
+.read-more{color:var(--accent); text-decoration:none; font-weight:600}
+.badges{display:flex; gap:8px; margin-bottom:12px}
+.badge{background:#f1f5f9; padding:6px 8px; border-radius:8px; font-size:0.85rem; color:var(--muted)}
+
+/* ------------------- Single Post ------------------- */
+.single-hero{max-width:900px; margin:18px auto 28px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 8px 28px rgba(2,6,23,0.06)}
+.single-hero img{width:100%; height:360px; object-fit:cover}
+.single-body{max-width:900px; margin:18px auto; background:#fff; padding:28px; border-radius:12px; box-shadow:0 8px 28px rgba(2,6,23,0.06); position:relative}
+.post-title{font-size:1.6rem; margin-bottom:12px}
+.post-like-btn{position:absolute; top:15px; right:15px; background:transparent; border:none; font-size:28px; cursor:pointer; color:#ff4d4d; transition:0.3s}
+.post-like-btn.liked{color:#e60000}
+.post-like-count{margin-top:10px; font-weight:bold; color:var(--dark)}
+
+/* ------------------- Forms ------------------- */
+form input[type="text"], form input[type="email"], form input[type="password"], form textarea {width:100%; padding:12px 15px; margin:8px 0 14px; border-radius:10px; border:1px solid #e6e9ef; font-size:1rem}
+form textarea{min-height:160px}
+.post-form, .login-register-card{background:#fff; padding:30px; border-radius:12px; max-width:500px; margin:40px auto; box-shadow:0 8px 28px rgba(2,6,23,0.06)}
+.post-form button, .login-register-card button{background:var(--accent); color:#fff; padding:12px 28px; border-radius:10px; border:none; cursor:pointer; font-weight:600; font-size:1rem; transition:0.3s}
+.post-form button:hover, .login-register-card button:hover{background:#1e40af}
+
+/* ------------------- Footer ------------------- */
+footer {
+    width: 100%;
+    background: #0f172a;
+    color: #fff;
+    padding: 25px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer a { color:#2563eb; text-decoration:none; font-weight:500; transition:0.3s }
+footer a:hover { color:#1e40af }
+footer .footer-links { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-bottom:10px }
+footer p { margin:5px 0 0; font-size:0.95rem; color:#d1d5db }
+
+/* ------------------- Responsive ------------------- */
+@media (max-width: 640px) {
+    .hero-overlay h1 { font-size: 2rem; }
+    .hero-overlay p { font-size: 1rem; }
+    .hero-overlay .btn-primary, .hero-overlay .btn-blogs { padding:10px 20px; font-size:0.95rem; margin:5px }
+    .main-nav a { font-size:0.9rem; margin-left:10px; }
+}
+
+/* ------------------- Auth Card Style ------------------- */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: url('images/background.jpg') center/cover no-repeat;
+    position: relative;
+}
+.auth-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.45);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+.auth-card {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.auth-card h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #041e55;
+    font-weight: 700;
+}
+.auth-card input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+.auth-card button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: #092561;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.auth-card button:hover {
+    background: #1e40af;
+}
+.auth-card p {
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+.auth-card a {
+    color: #0f2e72;
+    font-weight: 600;
+}
+/* ------------------- Header Buttons & Nav ------------------- */
+.main-nav a {
+    margin-left: 16px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+/* Primary nav button style (for e.g., Get Started) */
+.main-nav a.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+}
+
+/* Ghost/Outline buttons style (for normal links like Blogs) */
+.main-nav a.btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+/* Hover effects */
+.main-nav a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+.main-nav a.btn-primary:hover {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+.main-nav a.btn-ghost:hover {
+    background: var(--accent);
+    color: #fff;
+}
+/* ------------------- Post Edit/Delete Buttons ------------------- */
+.post-actions a {
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px; /* pill-shaped */
+    text-decoration: none;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Edit button - primary gradient */
+.post-actions a.btn-edit {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #fff;
+    border: none;
+}
+.post-actions a.btn-edit:hover {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(37,99,235,0.4);
+}
+
+/* Delete button - red gradient */
+.post-actions a.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #fff;
+    border: none;
+}
+.post-actions a.btn-delete:hover {
+    background: linear-gradient(135deg, #b91c1c, #ef4444);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(239,68,68,0.4);
+}

@@ -1,0 +1,14 @@
+# Ignore environment and config files
+.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE and cache folders
+/vendor/
+node_modules/
+*.log
+
+# Ignore backup files
+*.bak
